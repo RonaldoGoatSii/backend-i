@@ -108,12 +108,6 @@ requires-dist = [{ name = "typer", specifier = ">=0.24.1" }]
 name = "session2"
 version = "0.1.0"
 source = { virtual = "session2" }
-dependencies = [
-    { name = "typer" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "typer", specifier = ">=0.24.1" }]
 
 [[package]]
 name = "shellingham"

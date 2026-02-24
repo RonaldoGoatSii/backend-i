@@ -7,3 +7,9 @@ requires-python = ">=3.9"
 dependencies = [
     "typer>=0.23.2",
 ]
+
+[tool.uv.workspace]
+members = [
+    "session1",
+    "session2",
+]
