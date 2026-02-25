@@ -76,7 +76,7 @@ wheels = [
 ]
 
 [[package]]
-name = "session1"
+name = "session3"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
