@@ -1,47 +1,81 @@
 import json
-import os
+from pathlib import Path
 from data.models import Meeting
 from uuid import uuid4
-from dataclasses import asdict
 
-# Caminhos relativos ao local onde corres o programa (raiz da session4)
-BASE_PATH = "meetings" 
-JSON_FILE = "src/data/meetings.json"
+BASE_PATH = Path("meetings") 
+INDEX_PATH = Path("meetings/index.json")
+    
+def create(meeting:Meeting):
+    filename = f"{BASE_PATH}/{uuid4()}.md"
+    with open(filename, "w") as file:
+        file.writelines(str(meeting))
 
-def create(meeting: Meeting):
-    # 1. Garante que as pastas existem
-    os.makedirs(BASE_PATH, exist_ok=True)
-    os.makedirs("src/data", exist_ok=True)
-    
-    # 2. Criar o ficheiro Markdown (ID único)
-    md_id = str(uuid4())
-    filename = f"{BASE_PATH}/{md_id}.md"
-    
-    with open(filename, "w", encoding="utf-8") as file:
-        file.write(str(meeting))
+    if not INDEX_PATH.exists():
+        INDEX_PATH.touch()
 
-    # 3. Atualizar o Índice JSON
-    data = load_all()
-    
-    meeting_dict = asdict(meeting)
-    meeting_dict["id"] = md_id  
-    
-    data.append(meeting_dict)
-    
-    with open(JSON_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
+    index_content = None
 
-def load_all():
-    """Lê todas as reuniões do JSON"""
-    if not os.path.exists(JSON_FILE):
-        return []
-    try:
-        with open(JSON_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except (json.JSONDecodeError, IOError):
-        return []
+    with open(INDEX_PATH.absolute(),"r") as file:
+        index_content = json.loads(file.read())
+        print(index_content)
 
-def search(query: str):
-    """Procura no JSON pelo título"""
-    all_data = load_all()
-    return [m for m in all_data if query.lower() in m['title'].lower()]
+
+
+
+
+
+
+
+
+
+
+
+
+
+# import json
+# import os
+# from dataclasses import asdict
+
+
+
+
+# JSON_FILE = "src/data/index.json"
+
+# def create(meeting: Meeting):
+#     # 1. Garante que as pastas existem
+#     os.makedirs(BASE_PATH, exist_ok=True)
+#     os.makedirs("src/data", exist_ok=True)
+    
+#     # 2. Criar o ficheiro Markdown (ID único)
+#     md_id = str(uuid4())
+#     filename = f"{BASE_PATH}/{md_id}.md"
+    
+#     with open(filename, "w", encoding="utf-8") as file:
+#         file.write(str(meeting))
+
+#     # 3. Atualizar o Índice JSON
+#     data = load_all()
+    
+#     meeting_dict = asdict(meeting)
+#     meeting_dict["id"] = md_id  
+    
+#     data.append(meeting_dict)
+    
+#     with open(JSON_FILE, "w", encoding="utf-8") as f:
+#         json.dump(data, f, indent=4, ensure_ascii=False)
+
+# def load_all():
+#     """Lê todas as reuniões do JSON"""
+#     if not os.path.exists(JSON_FILE):
+#         return []
+#     try:
+#         with open(JSON_FILE, "r", encoding="utf-8") as f:
+#             return json.load(f)
+#     except (json.JSONDecodeError, IOError):
+#         return []
+
+# def search(query: str):
+#     """Procura no JSON pelo título"""
+#     all_data = load_all()
+#     return [m for m in all_data if query.lower() in m['title'].lower()]

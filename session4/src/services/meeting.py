@@ -9,6 +9,3 @@ def create(title, owner, date):
     )
     database.create(meeting = new_meeting)
 
-
-def list():
-    ...
