@@ -12,6 +12,7 @@ class Meeting:
 cli = Typer()
 
 
+
 @cli.command()
 def greetings(name: str = ""):
     echo(style(f"Greeting {name}", fg=colors.BLUE))
