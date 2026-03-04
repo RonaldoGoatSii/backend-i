@@ -5,8 +5,8 @@ from data.models import contactos, ContactInfo
 from uuid import uuid4
 import os
 
-BASE_PATH = "contacts_files" 
-JSON_FILE = "src/data/contacts.json"
+BASE_PATH = "contacts" 
+JSON_FILE = "contacts/contacts.json"
 
 def create(contact: contactos):
     """Cria um novo contacto em Markdown e atualiza o índice JSON"""

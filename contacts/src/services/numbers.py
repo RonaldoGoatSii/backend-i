@@ -1,7 +1,7 @@
 from data.models import contactos
 from services import database
 
-def create(name, number):
+def create(name: str, number: float):
     new_contact = contactos(
         name = name,
         number = number

@@ -2,6 +2,8 @@ import typer
 from services import numbers
 cli = typer.Typer()
 
+
+
 @cli.command()
 def create(
     name:str,
