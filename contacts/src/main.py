@@ -7,7 +7,7 @@ def create(
     name:str,
     number:str,
 )->None:
-    contact.create(name, number)
+    numbers.create(name, number)
 
 if __name__ == "__main__":
     cli()

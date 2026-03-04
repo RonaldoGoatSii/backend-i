@@ -7,7 +7,7 @@ class contactos:
     number :str
 
 
-   def __str__(self):
+def __str__(self):
         return f"""---
 name: {self.name}
 number: {self.number}
@@ -15,3 +15,7 @@ number: {self.number}
 # Contact
 """
     
+@dataclass
+class ContactInfo:
+    contact: contactos
+    path: str
