@@ -15,5 +15,5 @@ def run():
 def reques():
     ...
 
-if __name__ == "__main__":
+if __name__ == "__main__":gf
     app()
