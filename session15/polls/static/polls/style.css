@@ -1,0 +1,9 @@
+/* Deixa os links verdes */
+li a {
+    color: green;
+}
+
+/* Adiciona imagem de fundo */
+body {
+    background: white url("images/santos.png") no-repeat;
+}
