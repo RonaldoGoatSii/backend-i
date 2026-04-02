@@ -13,10 +13,6 @@ def list_meetings(title:str = "", owner:str = "", date:datetime | None = None)->
 
 @api.post("/", response_model=MeetingResponse)
 def create_meeting(meeting: MeetingRequest):
-    # Service (request ao Docker model para retornar o resumo
-    # Temos de fazer um prompt para o modelo percebem que tem de fazer um resumo das notas
-    # Depois temos de guardar nos respetivos ficheiros (conforme foi feito com o typer)
-    # E retornar o id para o user
     response = requests.post(
         "https://ollama:11434/api/generate",
         data=(
