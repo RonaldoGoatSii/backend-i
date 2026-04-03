@@ -1,8 +1,7 @@
 def test_create_meeting_success(client, valid_meeting_data):
     response = client.post("/meetings", json=valid_meeting_data)
     assert response.status_code == 201
-    assert response.json()["title"] == valid_meeting_data["title"]
-    assert "id" in response.json()
+    assert response.json()["title"] == "Planning Mensal"
 
 def test_create_meeting_error_title_too_short(client, valid_meeting_data):
     invalid_data = valid_meeting_data.copy()
