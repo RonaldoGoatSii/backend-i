@@ -1,3 +1,10 @@
+from pydantic import BaseModel, Field
+from typing import List
+
+class MeetingCreate(BaseModel):
+    title: str = Field(..., min_length=3) 
+    participants: List[str] = Field(..., min_length=1) 
+
 def test_create_meeting_success(client, valid_meeting_data):
     response = client.post("/meetings", json=valid_meeting_data)
     assert response.status_code == 201
